@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</head>
+
+<body ng-app ng-controller="todoCtrl">
+
+	<h2>My songs</h2>
+
+	<form ng-submit="todoAdd()">
+		<input type="text" ng-model="todoInput" size="50"
+			placeholder="Add New"> <input type="submit" value="Add New">
+	</form>
+
+	<br>
+
+	<div ng-repeat="x in todoList">
+		<h1 ng-bind="x.todoText"></h1>
+		<div ng-repeat="x in todoList">
+			<a ng-bind="x.todoText"></a>
+		</div>
+	</div>
+
+	<script>
+		function todoCtrl($scope) {
+			$scope.todoList = [ {
+				todoText : 'All of me',
+				tempo : 120,
+				playbacks : [ {
+					url : "http://gfdgfdg.mp3"
+				} ]
+			}, {
+				todoText : 'Minor swing',
+				tempo : 140
+			} ];
+
+			$scope.todoAdd = function() {
+				$scope.todoList.push({
+					todoText : $scope.todoInput,
+					done : false
+				});
+				$scope.todoInput = "";
+			};
+
+			$scope.remove = function() {
+				var oldList = $scope.todoList;
+				$scope.todoList = [];
+				angular.forEach(oldList, function(x) {
+					if (!x.done)
+						$scope.todoList.push(x);
+				});
+			};
+		}
+	</script>
+
+</body>
+</html>
