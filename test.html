@@ -18,7 +18,7 @@
 	var songs = [ {
 		name : 'All of me',
 		tempo : 120,
-		key : C,
+		key : "G",
 		playbacks : [ {
 			url : "http://gfdgfdg.mp3"
 		}, {
@@ -27,8 +27,8 @@
 			url : "http://gfdgfdg.mp55553"
 		} ]
 	}, {
-		name : 'Minor swing',
-		tempo : 140,
+		name : 'Swing 42',
+		tempo : 160,
 		youtube_playbacks : [ "9mhDen5mpOw" ]
 	} ];
 
@@ -75,9 +75,11 @@
 
 		<div ng-repeat="song in songs">
 
-			<h2 onclick="">{{song.name}}</h2>
+			<h2 onclick="angular.element('song').visibility = 'none'">{{song.name}}</h2>
 
-			<div class="Song">
+			<div class="Song" ng-attr-id="{{ 'song-' + songs.index }}">
+
+				&#9833; = {{song.tempo}}
 
 				<div visibility="collapse" ng-repeat="playback in song.playbacks">
 					<a href="{{playback.url}}">{{playback.url}}</a>
